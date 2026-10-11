@@ -58,25 +58,21 @@
   .proof .ghost{font-weight:600;padding:12px 4px;text-underline-offset:4px}
   .proof .lbl{color:inherit;opacity:.7}
   .car-wrap{min-width:0;color:inherit}
-  .car-wrap svg{width:100%;height:auto;display:block;overflow:visible}
+  .hero-shot{aspect-ratio:3/2;max-width:100%;overflow:hidden}
+  .hero-shot img{display:block;width:100%;height:100%;object-fit:cover}
   .spec{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:16px;padding-top:12px;border-top:1px solid currentColor;font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;text-transform:uppercase}
   .spec span{opacity:.85}
 
   /* fan deck */
   .deck{background:var(--ink);color:var(--board)}
-  .deck .wrap{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:center;padding-block:22px}
+  .deck .wrap{display:flex;gap:24px;align-items:center;padding-block:22px}
+  .deck .hint{flex:none;max-width:22ch;font-size:14px;color:#A3A39B}
   .chips{display:flex;gap:8px;overflow-x:auto;padding:4px 2px 8px}
   .chip{all:unset;cursor:pointer;flex:none;width:86px;height:112px;position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:8px;box-sizing:border-box;font-family:var(--mono);font-size:9.5px;line-height:1.35;letter-spacing:.03em;text-transform:uppercase;transition:transform .15s ease}
   .chip::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
   .chip:hover{transform:translateY(-4px)}
   .chip[aria-pressed=true]{transform:translateY(-8px);box-shadow:0 0 0 2px var(--board)}
   .chip:focus-visible{outline:2px solid var(--board);outline-offset:3px}
-  .finish{display:flex;border:1px solid #4A4A45}
-  .finish button{all:unset;cursor:pointer;padding:10px 14px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase}
-  .finish button + button{border-left:1px solid #4A4A45}
-  .finish button[aria-pressed=true]{background:var(--board);color:var(--ink)}
-  .finish button:focus-visible{outline:2px solid var(--board);outline-offset:2px}
-
   section{padding-block:clamp(64px,9vw,120px)}
   h2{font-family:var(--display);font-weight:400;font-size:clamp(38px,5.2vw,76px);line-height:.92;letter-spacing:-.02em;text-wrap:balance}
   .intro{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;align-items:end;margin-bottom:52px}
@@ -92,8 +88,9 @@
   .svc h3{font-family:var(--display);font-weight:400;font-size:clamp(26px,2.6vw,36px);line-height:1}
   .svc p{color:#36362F}
   .svc .from{margin-top:auto;padding-top:14px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;border-top:1px dashed var(--rule);font-family:var(--mono);font-size:12px}
-  .svc .swatchbar{height:16px;display:flex}
-  .svc .swatchbar i{flex:1}
+  .svc .pic{margin:-28px -28px 8px;aspect-ratio:16/9;overflow:hidden}
+  .svc:nth-child(1) .pic,.svc:nth-child(4) .pic{aspect-ratio:21/9}
+  .svc .pic img{display:block;width:100%;height:100%;object-fit:cover}
 
   /* estimator */
   .est{background:#F3F3EF}
@@ -153,7 +150,7 @@
     .steps::before{top:0;bottom:0;left:9px;right:auto;border-top:0;border-left:2px dashed var(--ink)}
     .step::before{top:4px;left:-31px}
     .care{grid-template-columns:minmax(0,1fr)}
-    .deck .wrap{grid-template-columns:minmax(0,1fr)}
+    .deck .wrap{flex-direction:column;align-items:stretch}
     footer .wrap{grid-template-columns:repeat(2,minmax(0,1fr))}
     header.top nav{display:none}
     header.top .btn{margin-left:auto}
@@ -180,50 +177,16 @@
       <div class="ctas"><a class="btn" href="#estimate">Estimate my car</a><a class="ghost" href="#builds">See recent builds</a></div>
     </div>
     <div class="car-wrap crop">
-      <svg viewBox="40 84 730 196" role="img" aria-labelledby="carTitle">
-        <title id="carTitle">Coupe side profile shown in the selected vinyl colour</title>
-        <defs>
-          <linearGradient id="flip" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stop-color="#2B1B5E"/><stop offset=".35" stop-color="#155E6B"/><stop offset=".7" stop-color="#5B2A6E"/><stop offset="1" stop-color="#7A5A12"/>
-          </linearGradient>
-          <linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1">
-            <stop id="sh1" offset="0" stop-color="#fff" stop-opacity=".55"/>
-            <stop id="sh2" offset=".28" stop-color="#fff" stop-opacity=".08"/>
-            <stop offset=".55" stop-color="#000" stop-opacity="0"/>
-            <stop id="sh3" offset="1" stop-color="#000" stop-opacity=".35"/>
-          </linearGradient>
-          <linearGradient id="streak" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity="1"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
-          </linearGradient>
-          <clipPath id="bodyClip"><path id="bodyShape" d="M60 222 Q50 192 82 182 L192 162 Q252 112 332 100 L470 98 Q540 102 602 150 L702 166 Q746 174 750 206 L752 226 Q752 236 740 236 L692 236 A62 62 0 0 0 568 236 L252 236 A62 62 0 0 0 128 236 L76 236 Q60 236 60 222Z"/></clipPath>
-        </defs>
-        <ellipse cx="408" cy="262" rx="360" ry="14" fill="#000" opacity=".22"/>
-        <g clip-path="url(#bodyClip)">
-          <rect id="paint" width="800" height="300" fill="#1F4E8C"/>
-          <rect width="800" height="300" fill="url(#sheen)"/>
-          <rect id="streakEl" x="80" y="148" width="620" height="5" fill="url(#streak)" opacity=".6"/>
-          <path d="M60 196 L752 196" stroke="#000" stroke-opacity=".25" stroke-width="1.5"/>
-          <path d="M404 120 L404 232" stroke="#000" stroke-opacity=".22" stroke-width="1.5"/>
-        </g>
-        <path d="M238 154 Q282 120 336 112 L398 110 L398 154Z" fill="#14181C"/>
-        <path d="M410 110 L468 110 Q518 114 558 152 L410 154Z" fill="#14181C"/>
-        <rect x="420" y="168" width="26" height="5" fill="#000" opacity=".4"/>
-        <g><circle cx="190" cy="236" r="50" fill="#111"/><circle cx="190" cy="236" r="30" fill="#8A8D90"/><circle cx="190" cy="236" r="8" fill="#111"/></g>
-        <g><circle cx="630" cy="236" r="50" fill="#111"/><circle cx="630" cy="236" r="30" fill="#8A8D90"/><circle cx="630" cy="236" r="8" fill="#111"/></g>
-      </svg>
-      <div class="spec"><span id="specName">Gloss Deep Harbor Blue</span><span id="specCode">SSK-G41</span><span>60" cast film · 7-yr outdoor</span></div>
+      <div class="hero-shot"><img src="img/install.jpg" alt="Installer working vinyl film around the wheel arch of a white sports car" width="1800" height="1192"></div>
+      <div class="spec"><span>Picked: <span id="specName">Gloss Deep Harbor Blue</span></span><span id="specCode">SSK-G41</span><span>60" cast film · 7-yr outdoor</span></div>
     </div>
   </div>
 </div>
 
 <div class="deck" aria-label="Vinyl colour picker">
   <div class="wrap">
+    <p class="hint">Pick a film from our most-requested colours. The page takes on the colour.</p>
     <div class="chips" id="chips" role="group" aria-label="Vinyl colours"></div>
-    <div class="finish" role="group" aria-label="Finish">
-      <button type="button" id="fin-gloss" data-f="gloss" aria-pressed="true">Gloss</button>
-      <button type="button" id="fin-satin" data-f="satin" aria-pressed="false">Satin</button>
-      <button type="button" id="fin-matte" data-f="matte" aria-pressed="false">Matte</button>
-    </div>
   </div>
 </div>
 
@@ -234,25 +197,28 @@
   </div>
   <div class="services">
     <div class="svc crop">
+      <div class="pic"><img src="img/satin-gold.jpg" alt="Coupe wrapped in satin gold film at a car show" loading="lazy" style="object-position:50% 55%"></div>
       <span class="lbl">Colour change</span>
       <h3>Full wrap</h3>
       <p>Every painted panel, door jambs optional. 140+ colours across gloss, satin, matte and colour-flip films from the major cast-vinyl makers.</p>
-      <div class="swatchbar"><i style="background:#1F4E8C"></i><i style="background:#3B3F42"></i><i style="background:#C8461B"></i><i style="background:#4B5A3A"></i><i style="background:#E9E5DA"></i><i style="background:#3A1F4A"></i><i style="background:#9DB7C4"></i></div>
       <div class="from"><span>from $3,400</span><span>4–5 days</span></div>
     </div>
     <div class="svc crop">
+      <div class="pic"><img src="img/livery.jpg" alt="Sedan covered in printed race livery graphics" loading="lazy" style="object-position:50% 60%"></div>
       <span class="lbl">Commercial</span>
       <h3>Fleet graphics</h3>
       <p>Printed and laminated in-house on 64" eco-solvent. We design, proof, print and install, and we keep your files for the next truck.</p>
       <div class="from"><span>from $1,800 / van</span><span>proof in 48 hr</span></div>
     </div>
     <div class="svc crop">
+      <div class="pic"><img src="img/ppf.jpg" alt="Installer smoothing clear film over a headlight and bumper" loading="lazy" style="object-position:50% 50%"></div>
       <span class="lbl">Protection</span>
       <h3>Paint protection film</h3>
       <p>Clear self-healing urethane. Light scratches disappear in the sun. Front-end, track pack or the whole car.</p>
       <div class="from"><span>front end from $1,650</span><span>10-yr film warranty</span></div>
     </div>
     <div class="svc crop">
+      <div class="pic"><img src="img/stripe.jpg" alt="Matte grey car with a yellow hood stripe" loading="lazy" style="object-position:50% 30%"></div>
       <span class="lbl">Details</span>
       <h3>Chrome delete, roofs &amp; stripes</h3>
       <p>Window trim in gloss or satin black, contrast roofs, mirror caps, hood stripes and anything else short of a full wrap. Most are done while you wait.</p>
@@ -362,35 +328,28 @@
 <script>
   const $=id=>document.getElementById(id);
   const vinyl=[
-    ['Deep Harbor Blue','41','#1F4E8C'],
-    ['Wet Asphalt','12','#3B3F42'],
-    ['Kiln Orange','27','#C8461B'],
-    ['Creek Moss','63','#4B5A3A'],
-    ['Bone','02','#E9E5DA'],
-    ['Plum Night','58','#3A1F4A'],
-    ['Pool Haze','35','#9DB7C4'],
-    ['Racing Yellow','21','#F2C200'],
-    ['Oil Slick Flip','F9','flip'],
+    ['Gloss Deep Harbor Blue','G41','#1F4E8C'],
+    ['Satin Wet Asphalt','S12','#3B3F42'],
+    ['Gloss Kiln Orange','G27','#C8461B'],
+    ['Matte Creek Moss','M63','#4B5A3A'],
+    ['Gloss Bone','G02','#E9E5DA'],
+    ['Satin Plum Night','S58','#3A1F4A'],
+    ['Satin Pool Haze','S35','#9DB7C4'],
+    ['Gloss Racing Yellow','G21','#F2C200'],
+    ['Satin Gold Leaf','S77','#8C7A3E'],
   ];
-  const finishes={gloss:{a:.55,b:.08,c:.35,s:.6,code:'G'},satin:{a:.22,b:.05,c:.3,s:.15,code:'S'},matte:{a:.06,b:0,c:.22,s:0,code:'M'}};
-  let pick=0, fin='gloss';
+  let pick=0;
   const lum=h=>{const n=parseInt(h.slice(1),16),r=(n>>16&255)/255,g=(n>>8&255)/255,b=(n&255)/255;const f=c=>c<=.03928?c/12.92:((c+.055)/1.055)**2.4;return .2126*f(r)+.7152*f(g)+.0722*f(b)};
   $('chips').innerHTML=vinyl.map(([n,c,h],i)=>{
-    const bg=h==='flip'?'linear-gradient(135deg,#2B1B5E,#155E6B 40%,#5B2A6E 70%,#7A5A12)':h;
-    const fg=h!=='flip'&&lum(h)>.35?'#121212':'#F4F4F0';
-    return `<button type="button" class="chip" id="chip-${i}" data-i="${i}" aria-pressed="${i===0}" style="background:${bg};color:${fg}">${n}<br>${c}</button>`;
+    const fg=lum(h)>.35?'#121212':'#F4F4F0';
+    return `<button type="button" class="chip" id="chip-${i}" data-i="${i}" aria-pressed="${i===0}" style="background:${h};color:${fg}">${n}<br>${c}</button>`;
   }).join('');
   function paint(){
-    const [n,c,h]=vinyl[pick], f=finishes[fin], root=document.documentElement.style;
-    const base=h==='flip'?'#2E2752':h;
-    $('paint').setAttribute('fill',h==='flip'?'url(#flip)':h);
-    root.setProperty('--proof',base);
-    root.setProperty('--on-proof',lum(base)>.35?'#121212':'#F4F4F0');
-    $('sh1').setAttribute('stop-opacity',f.a);$('sh2').setAttribute('stop-opacity',f.b);$('sh3').setAttribute('stop-opacity',f.c);
-    $('streakEl').setAttribute('opacity',f.s);
-    const fname=fin[0].toUpperCase()+fin.slice(1);
-    $('specName').textContent=(h==='flip'?'':fname+' ')+n;
-    $('specCode').textContent='SSK-'+(h==='flip'?'X':f.code)+c;
+    const [n,c,h]=vinyl[pick], root=document.documentElement.style;
+    root.setProperty('--proof',h);
+    root.setProperty('--on-proof',lum(h)>.35?'#121212':'#F4F4F0');
+    $('specName').textContent=n;
+    $('specCode').textContent='SSK-'+c;
   }
   $('chips').addEventListener('click',e=>{
     const b=e.target.closest('.chip');if(!b)return;
@@ -398,11 +357,6 @@
     document.querySelectorAll('.chip').forEach(x=>x.setAttribute('aria-pressed',x===b));
     paint();
   });
-  document.querySelectorAll('.finish button').forEach(b=>b.addEventListener('click',()=>{
-    fin=b.dataset.f;
-    document.querySelectorAll('.finish button').forEach(x=>x.setAttribute('aria-pressed',x===b));
-    paint();
-  }));
 
   // estimator
   const veh={coupe:{ft:52,hr:30},sedan:{ft:60,hr:34},suv:{ft:70,hr:40},truck:{ft:76,hr:44},van:{ft:82,hr:42}};

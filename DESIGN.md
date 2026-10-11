@@ -1,7 +1,7 @@
 # Second Skin: Design Language
 
 **Brand:** Second Skin Wraps, vinyl colour-change wraps, PPF and fleet graphics in Austin, TX (fictional)
-**Concept:** *The print-shop proof sheet.* The site is a neutral grey proofing board with crop marks and registration targets, and the hero is a live colour proof. Pick a vinyl from the fan deck and the car, hero and accents flood with that colour.
+**Concept:** *The print-shop proof sheet.* The site is a neutral grey proofing board with crop marks and registration targets, and the hero is a live colour proof. Pick a vinyl from the fan deck and the hero field and accents flood with that colour, around a real photo of the work being done.
 **Audience:** Enthusiasts changing their car's colour, plus small businesses wrapping vans and trucks.
 **Mood:** Confident, crafty, colourful but disciplined. A skilled print-and-install shop, not a tuner-culture site.
 
@@ -29,8 +29,8 @@
 | `--on-proof` | `#F4F4F0` or `#121212` | Text on `--proof`, chosen by luminance |
 
 **Vinyl palette (fan-deck chips):**
-Deep Harbor Blue `#1F4E8C` · Wet Asphalt `#3B3F42` · Kiln Orange `#C8461B` · Creek Moss `#4B5A3A` · Bone `#E9E5DA` · Plum Night `#3A1F4A` · Pool Haze `#9DB7C4` · Racing Yellow `#F2C200` · Oil Slick Flip (gradient `#2B1B5E → #155E6B → #5B2A6E → #7A5A12`).
-Codes follow the pattern `SSK-{finish letter G/S/M or X for flip}{2-digit number}`.
+Gloss Deep Harbor Blue `#1F4E8C` · Satin Wet Asphalt `#3B3F42` · Gloss Kiln Orange `#C8461B` · Matte Creek Moss `#4B5A3A` · Gloss Bone `#E9E5DA` · Satin Plum Night `#3A1F4A` · Satin Pool Haze `#9DB7C4` · Gloss Racing Yellow `#F2C200` · Satin Gold Leaf `#8C7A3E`.
+Finish is part of each colour's name (Gloss Kiln Orange, Satin Wet Asphalt, Matte Creek Moss). Codes follow the pattern `SSK-{G/S/M}{2-digit number}`.
 
 ## 3. Typography
 
@@ -46,34 +46,41 @@ Bowlby One's chunky, sticker-like shapes suggest cut vinyl lettering. Use it onl
 
 - Max width 1400px. Gutter `clamp(16px, 4vw, 56px)`.
 - **Header:** 72px on the board. The logo is a registration target (a circle with crosshairs) plus the wordmark in Bowlby One. Nav uses underline-on-hover. CTA is an ink block.
-- **Proof hero:** full-bleed `--proof` field. Left: headline ("Change the colour. Keep the paint."), copy and an inverted button. Right: a coupe side-profile SVG with crop marks and a mono spec strip underneath (finish + colour name · code · "60" cast film · 7-yr outdoor").
-- **Fan deck band:** an ink band directly under the hero. Left: a row of 86×112px vinyl chips, each labelled with name and code in mono. The selected chip lifts 8px with a board-coloured ring. Right: a Gloss / Satin / Matte segmented control.
+- **Proof hero:** full-bleed `--proof` field. Left: headline ("Change the colour. Keep the paint."), copy and an inverted button. Right: a 3:2 photo of an installer working film around a wheel arch, with crop marks and a mono spec strip underneath ("Picked: <finish + colour>" · code · "60" cast film · 7-yr outdoor").
+- **Fan deck band:** an ink band directly under the hero. Left: a short hint line. Right: a row of 86×112px vinyl chips, each labelled with finish + name and code in mono. The selected chip lifts 8px with a board-coloured ring.
 - Section intro: two columns, a big H2 on the left and a paragraph aligned to its bottom on the right.
 - Mobile: single column. The process timeline turns vertical with the dashed cut line on the left.
 
 ## 5. Signature components
 
-- **Live vinyl car:** the body shape is clipped and filled with the vinyl colour, with a **finish sheen** layered on top. Gloss has a strong top highlight (0.55) plus a sharp white streak along the shoulder line. Satin has a soft highlight (0.22) and a faint streak. Matte has almost no highlight (0.06) and no streak. Panel-gap lines at 22–25% black. Windows `#14181C`.
 - **Crop marks:** `.crop` adds L-shaped 22px corner marks top-left and bottom-right in `currentColor` at 55% opacity, offset −12px outside the element. Use them on service panels and the hero car.
-- **Service sheet:** `--sheet` panels on the 7/5/5/7 grid. Each has a mono eyebrow, a display H3 and copy, and ends with a dashed rule above a mono "from $X · turnaround" row. The colour-change panel includes a strip of vinyl colour blocks.
+- **Service sheet:** `--sheet` panels on the 7/5/5/7 grid. Each opens with a full-bleed photo at the top of the panel (21:9 on the wide panels, 16:9 on the narrow ones), then a mono eyebrow, a display H3 and copy, and ends with a dashed rule above a mono "from $X · turnaround" row.
 - **Film estimator:** radio pills with square 1.5px ink borders (filled ink when selected) for vehicle, coverage and film type. The ink result panel shows a huge "60 ft" figure and a **roll bar** filled with `--proof` against a 10% tick grid (film used out of a 100 ft roll), then mono rows for labour, days in the bay and estimate.
 - **Plotter-cut process:** a horizontal 2px dashed ink line with hollow circle nodes. Five steps, each with a mono day label, display H3, copy and a mono hour estimate.
 - **Job ledger:** a table of recent builds. Each film cell starts with a 38×24px colour swatch. Film used and days are in mono.
 - **Care columns:** three columns, each with a 2px ink top rule and a list of `+` (do) and `−` (don't) items, with the signs in mono.
 
-## 6. Motion
+## 6. Photography
 
-- The single orchestrated moment is the colour flood: the hero background, button and roll bar transition over 0.45s when a vinyl is picked.
+- Show the craft: installers' hands, squeegees, film being stretched around edges, finished cars in strong single colours or printed liveries.
+- Each service gets its own proof: satin colour change, printed livery, film on a headlight, a hood stripe.
+- Photos sit edge-to-edge inside panels with no rounding or shadow. Crop marks go on the panel, not the photo.
+- Never use illustrated or SVG cars. The fan-deck chips are the only drawn colour.
+- Source: Unsplash (free licence). Current files: `img/install.jpg`, `img/satin-gold.jpg`, `img/livery.jpg`, `img/ppf.jpg`, `img/stripe.jpg`.
+
+## 7. Motion
+
+- The single orchestrated moment is the colour flood: the hero background and button transition over 0.45s when a vinyl is picked, and the estimator's roll bar picks up the same colour.
 - Chips lift on hover (4px) and when selected (8px). The roll bar animates its width (0.3s).
 - All of this is disabled under reduced-motion.
 
-## 7. Voice
+## 8. Voice
 
 - A craftsperson explaining the work: "Most bad wraps fail at the edges." "Treat it like paint, not like a sticker."
 - Use real trade terms: cast vinyl, post-heat to ~200°F, knifeless tape, glassed out, door jambs, 60" roll, eco-solvent, laminate, PPF.
 - Give concrete numbers wherever you can: feet of film, hours, days, warranty years.
 
-## 8. Don'ts
+## 9. Don'ts
 
 - No "Fast & Furious" styling: neon underglow, smoke, carbon fibre, chrome type or angled slash shapes.
 - No fixed brand accent colour. The vinyl is the accent.
