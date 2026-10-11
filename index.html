@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Second Skin Wraps</title>
+<meta name="description" content="Second Skin — vinyl wraps, commercial fleet graphics and paint protection film in Austin, TX.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Instrument+Sans:wght@400;500;600&family=Martian+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* Layout: a print-shop proof sheet — neutral board with crop marks; the hero is a live colour proof that floods with whatever vinyl you pick */
+  :root{
+    --board:#E6E6E1;
+    --ink:#121212;
+    --mid:#62625C;
+    --rule:#C4C4BD;
+    --proof:#1F4E8C;     /* replaced live by the picked vinyl */
+    --on-proof:#F4F4F0;
+    --display:"Bowlby One","Arial Black",sans-serif;
+    --body:"Instrument Sans",system-ui,sans-serif;
+    --mono:"Martian Mono",ui-monospace,Consolas,monospace;
+    --g:clamp(16px,4vw,56px);
+    color-scheme:light;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--board);color:var(--ink);font-family:var(--body);font-size:16.5px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  :focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+  .wrap{padding-inline:var(--g);max-width:1400px;margin-inline:auto}
+  .mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+  .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--mid)}
+
+  /* crop marks */
+  .crop{position:relative}
+  .crop::before,.crop::after{content:"";position:absolute;width:22px;height:22px;pointer-events:none}
+  .crop::before{top:-12px;left:-12px;border-top:1px solid currentColor;border-left:1px solid currentColor;opacity:.55}
+  .crop::after{bottom:-12px;right:-12px;border-bottom:1px solid currentColor;border-right:1px solid currentColor;opacity:.55}
+
+  header.top .wrap{display:flex;align-items:center;gap:28px;height:72px}
+  .logo{font-family:var(--display);font-size:24px;line-height:1;text-decoration:none;letter-spacing:-.01em;display:flex;align-items:center;gap:10px}
+  .reg{width:22px;height:22px;border-radius:50%;border:1.5px solid var(--ink);position:relative;flex:none}
+  .reg::before,.reg::after{content:"";position:absolute;background:var(--ink)}
+  .reg::before{left:50%;top:-5px;bottom:-5px;width:1.5px;transform:translateX(-50%)}
+  .reg::after{top:50%;left:-5px;right:-5px;height:1.5px;transform:translateY(-50%)}
+  header.top nav{margin-left:auto;display:flex;gap:26px;font-weight:500;font-size:15px}
+  header.top nav a{text-decoration:none}
+  header.top nav a:hover{text-decoration:underline;text-underline-offset:4px}
+  .btn{display:inline-block;font-family:var(--body);font-weight:600;font-size:15px;background:var(--ink);color:var(--board);padding:12px 20px;text-decoration:none;border:0;cursor:pointer}
+
+  /* proof hero */
+  .proof{background:var(--proof);color:var(--on-proof);transition:background .45s ease,color .45s ease}
+  .proof .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:clamp(24px,4vw,56px);padding-block:clamp(40px,6vw,84px) 36px;align-items:center}
+  .proof h1{font-family:var(--display);font-weight:400;font-size:clamp(46px,6.2vw,100px);line-height:.88;letter-spacing:-.025em;text-wrap:balance}
+  .proof p{max-width:42ch;margin-top:22px;font-size:18px;opacity:.86}
+  .proof .ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+  .proof .btn{background:var(--on-proof);color:var(--proof);transition:inherit}
+  .proof .ghost{font-weight:600;padding:12px 4px;text-underline-offset:4px}
+  .proof .lbl{color:inherit;opacity:.7}
+  .car-wrap{min-width:0;color:inherit}
+  .car-wrap svg{width:100%;height:auto;display:block;overflow:visible}
+  .spec{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:16px;padding-top:12px;border-top:1px solid currentColor;font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;text-transform:uppercase}
+  .spec span{opacity:.85}
+
+  /* fan deck */
+  .deck{background:var(--ink);color:var(--board)}
+  .deck .wrap{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:center;padding-block:22px}
+  .chips{display:flex;gap:8px;overflow-x:auto;padding:4px 2px 8px}
+  .chip{all:unset;cursor:pointer;flex:none;width:86px;height:112px;position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:8px;box-sizing:border-box;font-family:var(--mono);font-size:9.5px;line-height:1.35;letter-spacing:.03em;text-transform:uppercase;transition:transform .15s ease}
+  .chip::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
+  .chip:hover{transform:translateY(-4px)}
+  .chip[aria-pressed=true]{transform:translateY(-8px);box-shadow:0 0 0 2px var(--board)}
+  .chip:focus-visible{outline:2px solid var(--board);outline-offset:3px}
+  .finish{display:flex;border:1px solid #4A4A45}
+  .finish button{all:unset;cursor:pointer;padding:10px 14px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase}
+  .finish button + button{border-left:1px solid #4A4A45}
+  .finish button[aria-pressed=true]{background:var(--board);color:var(--ink)}
+  .finish button:focus-visible{outline:2px solid var(--board);outline-offset:2px}
+
+  section{padding-block:clamp(64px,9vw,120px)}
+  h2{font-family:var(--display);font-weight:400;font-size:clamp(38px,5.2vw,76px);line-height:.92;letter-spacing:-.02em;text-wrap:balance}
+  .intro{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;align-items:end;margin-bottom:52px}
+  .intro p{max-width:52ch;color:#36362F}
+
+  /* services: asymmetric sheet */
+  .services{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:40px 28px}
+  .svc{background:#F3F3EF;padding:28px;min-width:0;display:flex;flex-direction:column;gap:10px}
+  .svc:nth-child(1){grid-column:span 7}
+  .svc:nth-child(2){grid-column:span 5}
+  .svc:nth-child(3){grid-column:span 5}
+  .svc:nth-child(4){grid-column:span 7}
+  .svc h3{font-family:var(--display);font-weight:400;font-size:clamp(26px,2.6vw,36px);line-height:1}
+  .svc p{color:#36362F}
+  .svc .from{margin-top:auto;padding-top:14px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;border-top:1px dashed var(--rule);font-family:var(--mono);font-size:12px}
+  .svc .swatchbar{height:16px;display:flex}
+  .svc .swatchbar i{flex:1}
+
+  /* estimator */
+  .est{background:#F3F3EF}
+  .est-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,72px)}
+  fieldset{border:0;display:grid;gap:10px;margin-bottom:28px}
+  legend{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--mid);margin-bottom:10px}
+  .opts{display:flex;flex-wrap:wrap;gap:8px}
+  .opts input{position:absolute;opacity:0;pointer-events:none}
+  .opts label{cursor:pointer;padding:10px 16px;border:1.5px solid var(--ink);font-weight:600;font-size:15px}
+  .opts input:checked + label{background:var(--ink);color:var(--board)}
+  .opts input:focus-visible + label{outline:2px solid var(--ink);outline-offset:3px}
+  .roll{background:var(--ink);color:var(--board);padding:28px;min-width:0}
+  .roll .big{font-family:var(--display);font-size:clamp(56px,7vw,96px);line-height:.9}
+  .roll .row{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-top:1px solid #34342F;font-family:var(--mono);font-size:12.5px}
+  .roll .row b{font-weight:500}
+  .rollbar{height:34px;margin:20px 0 22px;background:repeating-linear-gradient(90deg,#34342F 0 1px,transparent 1px 10%);border:1px solid #34342F;position:relative}
+  .rollbar i{position:absolute;inset:0 auto 0 0;background:var(--proof);transition:width .3s ease,background .45s ease}
+  .roll small{display:block;color:#A3A39B;font-size:13px;margin-top:14px}
+
+  /* process: plotter cut line */
+  .steps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;position:relative;padding-top:34px}
+  .steps::before{content:"";position:absolute;top:10px;left:0;right:0;border-top:2px dashed var(--ink)}
+  .step{padding-right:20px;position:relative;min-width:0}
+  .step::before{content:"";position:absolute;top:-30px;left:0;width:12px;height:12px;background:var(--board);border:2px solid var(--ink);border-radius:50%}
+  .step .n{font-family:var(--mono);font-size:11px;color:var(--mid)}
+  .step h3{font-family:var(--display);font-weight:400;font-size:22px;line-height:1.05;margin-top:6px}
+  .step p{font-size:15px;color:#36362F;margin-top:8px}
+  .step .t{font-family:var(--mono);font-size:11px;margin-top:10px}
+
+  /* ledger */
+  .ledger{overflow-x:auto;border-top:2px solid var(--ink)}
+  .ledger table{width:100%;min-width:720px;border-collapse:collapse;font-variant-numeric:tabular-nums}
+  .ledger th{font-family:var(--mono);font-weight:400;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--mid);text-align:left;padding:12px 12px 12px 0;border-bottom:1px solid var(--rule)}
+  .ledger td{padding:16px 12px 16px 0;border-bottom:1px solid var(--rule);vertical-align:middle}
+  .ledger td b{font-weight:600}
+  .ledger .c{display:inline-block;width:38px;height:24px;vertical-align:middle;margin-right:10px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.15)}
+  .ledger .mono{font-size:12.5px}
+
+  .care{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+  .care div{border-top:2px solid var(--ink);padding-top:16px}
+  .care h3{font-family:var(--display);font-weight:400;font-size:24px;line-height:1}
+  .care ul{list-style:none;margin-top:12px;display:grid;gap:8px;color:#36362F;font-size:15.5px}
+  .care li{display:grid;grid-template-columns:22px minmax(0,1fr)}
+  .care li span{font-family:var(--mono);font-size:12px;padding-top:2px}
+
+  footer{background:var(--ink);color:var(--board)}
+  footer .wrap{display:grid;grid-template-columns:minmax(0,1.6fr) repeat(3,minmax(0,1fr));gap:28px;padding-block:52px;font-size:15px}
+  footer .logo{font-size:clamp(30px,4vw,52px)}
+  footer h4{font-family:var(--mono);font-weight:400;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#A3A39B;margin-bottom:8px}
+  footer .reg{border-color:var(--board)} footer .reg::before,footer .reg::after{background:var(--board)}
+
+  @media (max-width:1000px){
+    .proof .wrap,.intro,.est-grid{grid-template-columns:minmax(0,1fr)}
+    .services{grid-template-columns:minmax(0,1fr)}
+    .svc:nth-child(n){grid-column:auto}
+    .steps{grid-template-columns:minmax(0,1fr);padding-top:0;padding-left:34px;gap:28px}
+    .steps::before{top:0;bottom:0;left:9px;right:auto;border-top:0;border-left:2px dashed var(--ink)}
+    .step::before{top:4px;left:-31px}
+    .care{grid-template-columns:minmax(0,1fr)}
+    .deck .wrap{grid-template-columns:minmax(0,1fr)}
+    footer .wrap{grid-template-columns:repeat(2,minmax(0,1fr))}
+    header.top nav{display:none}
+    header.top .btn{margin-left:auto}
+  }
+  @media (max-width:560px){footer .wrap{grid-template-columns:minmax(0,1fr)}}
+  @media (prefers-reduced-motion:reduce){.proof,.proof .btn,.chip,.rollbar i{transition:none}}
+</style>
+</head>
+<body>
+
+<header class="top"><div class="wrap">
+  <a class="logo" href="#"><span class="reg"></span>Second Skin</a>
+  <nav><a href="#services">Services</a><a href="#estimate">Estimate</a><a href="#process">Process</a><a href="#builds">Recent builds</a></nav>
+  <a class="btn" href="#estimate">Start a quote</a>
+</div></header>
+
+<main>
+<div class="proof" id="proof">
+  <div class="wrap">
+    <div>
+      <div class="lbl">Vinyl wrap · PPF · Fleet graphics · Austin, TX</div>
+      <h1 style="margin-top:16px">Change the colour. Keep the paint.</h1>
+      <p>A full wrap is cast vinyl laid over your factory paint, panel by panel, with the handles, mirrors and badges taken off first. When you're done with it, it peels off clean.</p>
+      <div class="ctas"><a class="btn" href="#estimate">Estimate my car</a><a class="ghost" href="#builds">See recent builds</a></div>
+    </div>
+    <div class="car-wrap crop">
+      <svg viewBox="40 84 730 196" role="img" aria-labelledby="carTitle">
+        <title id="carTitle">Coupe side profile shown in the selected vinyl colour</title>
+        <defs>
+          <linearGradient id="flip" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#2B1B5E"/><stop offset=".35" stop-color="#155E6B"/><stop offset=".7" stop-color="#5B2A6E"/><stop offset="1" stop-color="#7A5A12"/>
+          </linearGradient>
+          <linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1">
+            <stop id="sh1" offset="0" stop-color="#fff" stop-opacity=".55"/>
+            <stop id="sh2" offset=".28" stop-color="#fff" stop-opacity=".08"/>
+            <stop offset=".55" stop-color="#000" stop-opacity="0"/>
+            <stop id="sh3" offset="1" stop-color="#000" stop-opacity=".35"/>
+          </linearGradient>
+          <linearGradient id="streak" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity="1"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
+          </linearGradient>
+          <clipPath id="bodyClip"><path id="bodyShape" d="M60 222 Q50 192 82 182 L192 162 Q252 112 332 100 L470 98 Q540 102 602 150 L702 166 Q746 174 750 206 L752 226 Q752 236 740 236 L692 236 A62 62 0 0 0 568 236 L252 236 A62 62 0 0 0 128 236 L76 236 Q60 236 60 222Z"/></clipPath>
+        </defs>
+        <ellipse cx="408" cy="262" rx="360" ry="14" fill="#000" opacity=".22"/>
+        <g clip-path="url(#bodyClip)">
+          <rect id="paint" width="800" height="300" fill="#1F4E8C"/>
+          <rect width="800" height="300" fill="url(#sheen)"/>
+          <rect id="streakEl" x="80" y="148" width="620" height="5" fill="url(#streak)" opacity=".6"/>
+          <path d="M60 196 L752 196" stroke="#000" stroke-opacity=".25" stroke-width="1.5"/>
+          <path d="M404 120 L404 232" stroke="#000" stroke-opacity=".22" stroke-width="1.5"/>
+        </g>
+        <path d="M238 154 Q282 120 336 112 L398 110 L398 154Z" fill="#14181C"/>
+        <path d="M410 110 L468 110 Q518 114 558 152 L410 154Z" fill="#14181C"/>
+        <rect x="420" y="168" width="26" height="5" fill="#000" opacity=".4"/>
+        <g><circle cx="190" cy="236" r="50" fill="#111"/><circle cx="190" cy="236" r="30" fill="#8A8D90"/><circle cx="190" cy="236" r="8" fill="#111"/></g>
+        <g><circle cx="630" cy="236" r="50" fill="#111"/><circle cx="630" cy="236" r="30" fill="#8A8D90"/><circle cx="630" cy="236" r="8" fill="#111"/></g>
+      </svg>
+      <div class="spec"><span id="specName">Gloss Deep Harbor Blue</span><span id="specCode">SSK-G41</span><span>60" cast film · 7-yr outdoor</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="deck" aria-label="Vinyl colour picker">
+  <div class="wrap">
+    <div class="chips" id="chips" role="group" aria-label="Vinyl colours"></div>
+    <div class="finish" role="group" aria-label="Finish">
+      <button type="button" id="fin-gloss" data-f="gloss" aria-pressed="true">Gloss</button>
+      <button type="button" id="fin-satin" data-f="satin" aria-pressed="false">Satin</button>
+      <button type="button" id="fin-matte" data-f="matte" aria-pressed="false">Matte</button>
+    </div>
+  </div>
+</div>
+
+<section class="wrap" id="services">
+  <div class="intro">
+    <h2>Four things we put on cars</h2>
+    <p>Everything is installed in-house in a sealed, temperature-held bay. Dust is the enemy of vinyl, so we don't share the room with anything else.</p>
+  </div>
+  <div class="services">
+    <div class="svc crop">
+      <span class="lbl">Colour change</span>
+      <h3>Full wrap</h3>
+      <p>Every painted panel, door jambs optional. 140+ colours across gloss, satin, matte and colour-flip films from the major cast-vinyl makers.</p>
+      <div class="swatchbar"><i style="background:#1F4E8C"></i><i style="background:#3B3F42"></i><i style="background:#C8461B"></i><i style="background:#4B5A3A"></i><i style="background:#E9E5DA"></i><i style="background:#3A1F4A"></i><i style="background:#9DB7C4"></i></div>
+      <div class="from"><span>from $3,400</span><span>4–5 days</span></div>
+    </div>
+    <div class="svc crop">
+      <span class="lbl">Commercial</span>
+      <h3>Fleet graphics</h3>
+      <p>Printed and laminated in-house on 64" eco-solvent. We design, proof, print and install, and we keep your files for the next truck.</p>
+      <div class="from"><span>from $1,800 / van</span><span>proof in 48 hr</span></div>
+    </div>
+    <div class="svc crop">
+      <span class="lbl">Protection</span>
+      <h3>Paint protection film</h3>
+      <p>Clear self-healing urethane. Light scratches disappear in the sun. Front-end, track pack or the whole car.</p>
+      <div class="from"><span>front end from $1,650</span><span>10-yr film warranty</span></div>
+    </div>
+    <div class="svc crop">
+      <span class="lbl">Details</span>
+      <h3>Chrome delete, roofs &amp; stripes</h3>
+      <p>Window trim in gloss or satin black, contrast roofs, mirror caps, hood stripes and anything else short of a full wrap. Most are done while you wait.</p>
+      <div class="from"><span>from $280</span><span>same day</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="est" id="estimate">
+  <div class="wrap">
+    <div class="intro">
+      <h2>How much film is your car?</h2>
+      <p>Wraps are priced mostly by film length and labour hours. This gets you within about 10% before we see the car in person.</p>
+    </div>
+    <div class="est-grid">
+      <form id="estForm">
+        <fieldset>
+          <legend>Vehicle</legend>
+          <div class="opts">
+            <input type="radio" name="veh" id="v-coupe" value="coupe"><label for="v-coupe">Coupe</label>
+            <input type="radio" name="veh" id="v-sedan" value="sedan" checked><label for="v-sedan">Sedan</label>
+            <input type="radio" name="veh" id="v-suv" value="suv"><label for="v-suv">SUV</label>
+            <input type="radio" name="veh" id="v-truck" value="truck"><label for="v-truck">Crew-cab truck</label>
+            <input type="radio" name="veh" id="v-van" value="van"><label for="v-van">Cargo van</label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Coverage</legend>
+          <div class="opts">
+            <input type="radio" name="cov" id="c-full" value="1" checked><label for="c-full">Full body</label>
+            <input type="radio" name="cov" id="c-jambs" value="1.18"><label for="c-jambs">Full + door jambs</label>
+            <input type="radio" name="cov" id="c-partial" value="0.45"><label for="c-partial">Partial (hood, roof, mirrors)</label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Film</legend>
+          <div class="opts">
+            <input type="radio" name="film" id="fl-std" value="1" checked><label for="fl-std">Gloss / satin / matte</label>
+            <input type="radio" name="film" id="fl-flip" value="1.35"><label for="fl-flip">Colour-flip</label>
+            <input type="radio" name="film" id="fl-chrome" value="1.9"><label for="fl-chrome">Chrome</label>
+          </div>
+        </fieldset>
+      </form>
+      <div class="roll" aria-live="polite">
+        <span class="lbl" style="color:#A3A39B">Estimated film off a 60" roll</span>
+        <div class="big" id="ft">60 ft</div>
+        <div class="rollbar" aria-hidden="true"><i id="rollFill" style="width:60%"></i></div>
+        <div class="row"><span>Labour</span><b id="hrs">~34 hr</b></div>
+        <div class="row"><span>Car with us</span><b id="days">4 days</b></div>
+        <div class="row"><span>Estimate</span><b id="price">$3,900</b></div>
+        <small>Bar shows film used out of a 100 ft roll. Includes a 10–15% allowance for test pieces and pattern overlap.</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap" id="process">
+  <div class="intro">
+    <h2>Five days in the bay</h2>
+    <p>Most bad wraps fail at the edges. That's why the first day goes on prep and taking parts off, before any film touches the car.</p>
+  </div>
+  <div class="steps">
+    <div class="step"><span class="n">Day 1</span><h3>Decon wash &amp; clay</h3><p>Iron remover, clay bar, then an isopropyl wipe on every panel so the adhesive grips paint, not wax.</p><div class="t mono">~4 hr</div></div>
+    <div class="step"><span class="n">Day 1</span><h3>Disassembly</h3><p>Handles, mirrors, badges, tail lights and trim come off so film wraps around edges instead of stopping at them.</p><div class="t mono">~5 hr</div></div>
+    <div class="step"><span class="n">Day 2–3</span><h3>Lay &amp; tuck</h3><p>Film goes on one panel at a time, glassed out flat and tucked behind every edge. Knifeless tape for any cut near paint.</p><div class="t mono">~20 hr</div></div>
+    <div class="step"><span class="n">Day 4</span><h3>Post-heat</h3><p>Every stretched area and edge is heated to about 200°F with an IR thermometer, so the film stops trying to shrink back.</p><div class="t mono">~3 hr</div></div>
+    <div class="step"><span class="n">Day 5</span><h3>Rest &amp; inspect</h3><p>The car sits overnight, then we reassemble, check every edge under a light and hand you the keys.</p><div class="t mono">~2 hr</div></div>
+  </div>
+</section>
+
+<section class="wrap" id="builds" style="padding-top:0">
+  <div class="intro">
+    <h2>Recent builds</h2>
+    <p>Pulled from the shop job log. Ask about any of them and we'll show you the car in person if the owner says yes.</p>
+  </div>
+  <div class="ledger">
+    <table>
+      <thead><tr><th>Vehicle</th><th>Film</th><th>Scope</th><th>Film used</th><th>In bay</th></tr></thead>
+      <tbody>
+        <tr><td><b>2023 Toyota GR86</b></td><td><span class="c" style="background:#C8461B"></span>Gloss Kiln Orange</td><td>Full + jambs</td><td class="mono">58 ft</td><td class="mono">5 days</td></tr>
+        <tr><td><b>2021 Tesla Model 3</b></td><td><span class="c" style="background:#3B3F42"></span>Satin Wet Asphalt</td><td>Full body + chrome delete</td><td class="mono">61 ft</td><td class="mono">4 days</td></tr>
+        <tr><td><b>2024 Ford Transit (×6)</b></td><td><span class="c" style="background:linear-gradient(90deg,#F2C200 50%,#121212 50%)"></span>Printed fleet graphics</td><td>Sides + rear, partial</td><td class="mono">32 ft each</td><td class="mono">2 days each</td></tr>
+        <tr><td><b>2019 Porsche Cayman</b></td><td><span class="c" style="background:#E9E5DA"></span>Gloss Bone + full PPF</td><td>Full body</td><td class="mono">54 ft</td><td class="mono">7 days</td></tr>
+        <tr><td><b>2022 Ram 1500</b></td><td><span class="c" style="background:#4B5A3A"></span>Matte Creek Moss</td><td>Full body</td><td class="mono">74 ft</td><td class="mono">5 days</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="wrap" style="padding-top:0">
+  <div class="intro"><h2>Keeping it looking new</h2><p>Cast vinyl lasts five to seven years outdoors in Texas if you treat it like paint, not like a sticker.</p></div>
+  <div class="care">
+    <div><h3>Gloss</h3><ul><li><span>+</span>Hand wash, two buckets</li><li><span>+</span>Vinyl-safe spray sealant monthly</li><li><span>−</span>No abrasive polish or compound</li></ul></div>
+    <div><h3>Satin &amp; matte</h3><ul><li><span>+</span>Matte-specific soap only</li><li><span>−</span>No wax, it leaves shiny patches</li><li><span>−</span>No brush car washes, ever</li></ul></div>
+    <div><h3>Everything</h3><ul><li><span>+</span>Pressure washer at least 12" away</li><li><span>+</span>Get bird droppings off the same day</li><li><span>−</span>Don't aim the jet at edges or seams</li></ul></div>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap">
+  <div><a class="logo" href="#"><span class="reg"></span>Second Skin</a><p style="margin-top:14px;color:#A3A39B;max-width:34ch">Wraps, PPF and fleet graphics. Certified installers, sealed bay, no subcontracting.</p></div>
+  <div><h4>Shop</h4>7012 Burleson Rd, Bay C<br>Austin, TX 78744</div>
+  <div><h4>Hours</h4>Mon–Fri 8 AM–6 PM<br>Sat by appointment</div>
+  <div><h4>Contact</h4><span class="mono" style="font-size:13px">(512) 555-0196</span><br>bay@secondskin.example</div>
+</div></footer>
+
+<script>
+  const $=id=>document.getElementById(id);
+  const vinyl=[
+    ['Deep Harbor Blue','41','#1F4E8C'],
+    ['Wet Asphalt','12','#3B3F42'],
+    ['Kiln Orange','27','#C8461B'],
+    ['Creek Moss','63','#4B5A3A'],
+    ['Bone','02','#E9E5DA'],
+    ['Plum Night','58','#3A1F4A'],
+    ['Pool Haze','35','#9DB7C4'],
+    ['Racing Yellow','21','#F2C200'],
+    ['Oil Slick Flip','F9','flip'],
+  ];
+  const finishes={gloss:{a:.55,b:.08,c:.35,s:.6,code:'G'},satin:{a:.22,b:.05,c:.3,s:.15,code:'S'},matte:{a:.06,b:0,c:.22,s:0,code:'M'}};
+  let pick=0, fin='gloss';
+  const lum=h=>{const n=parseInt(h.slice(1),16),r=(n>>16&255)/255,g=(n>>8&255)/255,b=(n&255)/255;const f=c=>c<=.03928?c/12.92:((c+.055)/1.055)**2.4;return .2126*f(r)+.7152*f(g)+.0722*f(b)};
+  $('chips').innerHTML=vinyl.map(([n,c,h],i)=>{
+    const bg=h==='flip'?'linear-gradient(135deg,#2B1B5E,#155E6B 40%,#5B2A6E 70%,#7A5A12)':h;
+    const fg=h!=='flip'&&lum(h)>.35?'#121212':'#F4F4F0';
+    return `<button type="button" class="chip" id="chip-${i}" data-i="${i}" aria-pressed="${i===0}" style="background:${bg};color:${fg}">${n}<br>${c}</button>`;
+  }).join('');
+  function paint(){
+    const [n,c,h]=vinyl[pick], f=finishes[fin], root=document.documentElement.style;
+    const base=h==='flip'?'#2E2752':h;
+    $('paint').setAttribute('fill',h==='flip'?'url(#flip)':h);
+    root.setProperty('--proof',base);
+    root.setProperty('--on-proof',lum(base)>.35?'#121212':'#F4F4F0');
+    $('sh1').setAttribute('stop-opacity',f.a);$('sh2').setAttribute('stop-opacity',f.b);$('sh3').setAttribute('stop-opacity',f.c);
+    $('streakEl').setAttribute('opacity',f.s);
+    const fname=fin[0].toUpperCase()+fin.slice(1);
+    $('specName').textContent=(h==='flip'?'':fname+' ')+n;
+    $('specCode').textContent='SSK-'+(h==='flip'?'X':f.code)+c;
+  }
+  $('chips').addEventListener('click',e=>{
+    const b=e.target.closest('.chip');if(!b)return;
+    pick=+b.dataset.i;
+    document.querySelectorAll('.chip').forEach(x=>x.setAttribute('aria-pressed',x===b));
+    paint();
+  });
+  document.querySelectorAll('.finish button').forEach(b=>b.addEventListener('click',()=>{
+    fin=b.dataset.f;
+    document.querySelectorAll('.finish button').forEach(x=>x.setAttribute('aria-pressed',x===b));
+    paint();
+  }));
+
+  // estimator
+  const veh={coupe:{ft:52,hr:30},sedan:{ft:60,hr:34},suv:{ft:70,hr:40},truck:{ft:76,hr:44},van:{ft:82,hr:42}};
+  function estimate(){
+    const fd=new FormData($('estForm'));
+    const v=veh[fd.get('veh')], cov=+fd.get('cov'), film=+fd.get('film');
+    const ft=Math.round(v.ft*cov), hr=Math.round(v.hr*cov*(film>1.5?1.25:1));
+    const price=Math.round((ft*film*14 + hr*90)/50)*50;
+    const days=Math.max(1,Math.ceil(hr/9));
+    $('ft').textContent=ft+' ft';
+    $('rollFill').style.width=Math.min(100,ft)+'%';
+    $('hrs').textContent='~'+hr+' hr';
+    $('days').textContent=days+(days===1?' day':' days');
+    $('price').textContent='$'+price.toLocaleString('en-US');
+  }
+  $('estForm').addEventListener('change',estimate);
+  $('estForm').addEventListener('submit',e=>e.preventDefault());
+  paint(); estimate();
+</script>
+</body>
+</html>
